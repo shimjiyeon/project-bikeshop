@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bike">
+	<select id="getBikes" resultType="vo.Bike">
+		select * from bike
+	</select>
+	<select id="getBike" parameterType="int"  resultType="vo.Bike">
+		select * from bike where id=#{id}
+	</select>
+	<update id="updateCount" parameterType="int">
+		update bike set readcount = readcount+1 where id = #{id}
+	</update>
+	<insert id="insert" parameterType="vo.Bike">
+	insert into bike
+	(id, kind,price,image,year,spec,readcount) 
+	values 
+	(bike_id_seq.nextval,#{kind},#{price},#{image},#{year},#{spec},#{readcount})
+	</insert>
+	
+<!-- <select id="getList" resultType="vo.Bike" parameterType="java.util.Map">
+		select * from Bike order by id desc limit #{startNo},#{pageSize}
+	</select> -->	
+</mapper>
+
+
+
